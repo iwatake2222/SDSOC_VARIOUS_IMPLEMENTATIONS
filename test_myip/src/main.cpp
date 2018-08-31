@@ -37,6 +37,9 @@ int main(int argc, char **argv)
 	extern void test_myIP_var(int blockNum);
 	test_myIP_var(blockNum);
 
+	extern void test_myIP_buff_unroll(int blockNum);
+	test_myIP_buff_unroll(blockNum);
+
 	std::cout << "Done" << std::endl;
 }
 
