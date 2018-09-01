@@ -8,10 +8,6 @@
   </configuration>
   <configuration name="Release" id="com.xilinx.sdsoc.managedbuild.project.release.2108946837">
     <configBuildOptions xsi:type="sdsproject:Option" insertapm="false" gensdcard="true" dmclkid="0" enableHwSwTrace="false" traceApplication="false"/>
-    <lastBuildOptions xsi:type="sdsproject:Option" insertapm="false" gensdcard="true" dmclkid="0" enableHwSwTrace="false" traceApplication="false">
-      <accelerator name="myIP_partition_0_unroll_mask_64" filepath="src/myIP_buff_unroll.cpp" clkid="0" location="C:/asd/dev/zynq/sdsoc/test01/test_myip/src/myIP_buff_unroll.cpp"/>
-      <accelerator name="myIP_partition_2_unroll_mask_64" filepath="src/myIP_buff_unroll.cpp" clkid="0" location="C:/asd/dev/zynq/sdsoc/test01/test_myip/src/myIP_buff_unroll.cpp"/>
-      <accelerator name="myIP_partition_4_unroll_mask_64" filepath="src/myIP_buff_unroll.cpp" clkid="0" location="C:/asd/dev/zynq/sdsoc/test01/test_myip/src/myIP_buff_unroll.cpp"/>
-    </lastBuildOptions>
+    <lastBuildOptions xsi:type="sdsproject:Option" insertapm="false" gensdcard="true" dmclkid="0" enableHwSwTrace="false" traceApplication="false"/>
   </configuration>
 </sdsproject:SDSProject>
