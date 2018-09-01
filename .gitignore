@@ -1,3 +1,6 @@
 Debug
 Release
 logs
+.metadata
+SDK.log
+RemoteSystemsTempFiles
