@@ -78,6 +78,8 @@ int main()
 	uint64_t* imgDst64 = (uint64_t*)sds_alloc_non_cacheable(WIDTH_MAX * HEIGHT_MAX);
 
 	readFile("org.raw", imgSrc8, STRIDE_RGB * HEIGHT);
+	readFile("org.raw", (uint8_t*)imgSrc64, STRIDE_RGB * HEIGHT);
+
 	counter.reset();
 	for (int i = 0; i < TEST_NUM; i++) {
 		counter.start();
@@ -86,8 +88,8 @@ int main()
 	}
 	printf("convRGB2Y_hw0: %.3f [msec]\n", counter.avg_time() * 1000);
 	writeFile("gray_hw0.raw", imgDst8, STRIDE_Y * HEIGHT);
+	verifyGrayscaleImage(imgDst, imgDst8, WIDTH, HEIGHT, STRIDE_Y, STRIDE_Y);
 
-	readFile("org.raw", (uint8_t*)imgSrc64, STRIDE_RGB * HEIGHT);
 	counter.reset();
 	for (int i = 0; i < TEST_NUM; i++) {
 		counter.start();
@@ -96,6 +98,27 @@ int main()
 	}
 	printf("convRGB2Y_hw1: %.3f [msec]\n", counter.avg_time() * 1000);
 	writeFile("gray_hw1.raw", (uint8_t*)imgDst64, STRIDE_Y * HEIGHT);
+	verifyGrayscaleImage(imgDst, (uint8_t*)imgDst64, WIDTH, HEIGHT, STRIDE_Y, STRIDE_Y);
+
+	counter.reset();
+	for (int i = 0; i < TEST_NUM; i++) {
+		counter.start();
+		convRGB2Y_hw2(imgDst64, imgSrc64, WIDTH, HEIGHT, STRIDE_Y, STRIDE_RGB);
+		counter.stop();
+	}
+	printf("convRGB2Y_hw2: %.3f [msec]\n", counter.avg_time() * 1000);
+	writeFile("convRGB2Y_hw2.raw", (uint8_t*)imgDst64, STRIDE_Y * HEIGHT);
+	verifyGrayscaleImage(imgDst, (uint8_t*)imgDst64, WIDTH, HEIGHT, STRIDE_Y, STRIDE_Y);
+
+	counter.reset();
+	for (int i = 0; i < TEST_NUM; i++) {
+		counter.start();
+		convRGB2Y_hw3(imgDst8, imgSrc8, WIDTH, HEIGHT, STRIDE_Y, STRIDE_RGB);
+		counter.stop();
+	}
+	printf("convRGB2Y_hw3: %.3f [msec]\n", counter.avg_time() * 1000);
+	writeFile("gray_hw0.raw", imgDst8, STRIDE_Y * HEIGHT);
+	verifyGrayscaleImage(imgDst, imgDst8, WIDTH, HEIGHT, STRIDE_Y, STRIDE_Y);
 
 
 	sds_free(imgSrc8);
